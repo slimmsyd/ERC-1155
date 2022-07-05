@@ -17,7 +17,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false); 
   const [accountAddress, setAccountAddress] = useState(""); 
 
-  const [userTokenId, setUserTokenId] = useState(0); //may use number(covert from string to number)
+  const [userTokenId, setUserTokenId] = useState(""); //may use number(covert from string to number)
   const [maxTokenIds, setMaxTokenIds] = useState("")
   const [tokenIds, setTokenIds] = useState("")
   console.log(tokenIds, maxTokenIds)
@@ -29,7 +29,6 @@ export default function Home() {
       disableInjectedProvider: false
     })
 
-    connect();
     returnMaxTokens();
     
 
@@ -102,7 +101,7 @@ function splitString(string) {
     }
 }
 
-const returnMaxTokenIds= async() => { 
+const returnSenderTokens= async() => { 
     try { 
         const provider = await getProviderOrSigner();
         const contract = new Contract(
@@ -111,11 +110,7 @@ const returnMaxTokenIds= async() => {
             provider
         );
             let tx = await contract.getBalanceOfTokens();
-            setLoading(true);
-            await tx.wait(1);
-            console.log(tx);
-            setLoading(false);
-
+            setUserTokenId(tx);
 
     }catch(e) { 
         console.error(e)
@@ -161,6 +156,7 @@ const returnMaxTokens= async() => {
         maxTokenIds = {maxTokenIds}
         tokenIds = {tokenIds}
         loading = {loading}
+        userTokenId = {userTokenId}
       />
 
 

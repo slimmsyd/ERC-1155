@@ -2,11 +2,13 @@
 import React, {useState,useEffect} from 'react';
 import styles from '../../styles/Home.module.css'
 import Link from 'next/link';
-export default function Header({tokenIds,mint, maxTokenIds, loading}) {
+export default function Header({tokenIds,mint, maxTokenIds, loading, userTokenId}) {
     const  [tokenNumber, setTokenIdNumber] = useState(0)
-
+    const [userNumber, seUserNumber] = useState(0)
     useEffect(() => {
           let tokenIdNumber = parseFloat(tokenIds)
+          let userTokenNumber = parseFloat(userTokenId)
+          seUserNumber(userTokenNumber)
         setTokenIdNumber(tokenIdNumber)
 
     })
@@ -21,7 +23,7 @@ export default function Header({tokenIds,mint, maxTokenIds, loading}) {
     }
 
     const openSection = () => { 
-        if(tokenNumber >= 1) { 
+        if(userNumber > 0) { 
             return ( 
                 <div className = {styles.innerDiv}>
                     <div className = {`${styles.box } ${styles.boxColor}`}>
