@@ -1,0 +1,80 @@
+
+@font-face {
+  font-family: "Senti";
+  src: url("../assets/fonts/FontsFree-Net-Sentinel-Medium.ttf");
+}
+
+.container {
+  padding: 1rem 1rem;
+  font-family: "Senti";
+
+
+}
+#h3 { 
+  margin-left: 20px;
+}
+
+.nav  { 
+  min-height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.connectBtn { 
+  background: #FF5D8F;
+  border: 1px solid #191919;
+  width:129px;
+  height: 43px;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  color:#ffff
+}
+
+.header {
+  padding: 0.5rem 6rem;
+  font-size: 34px;
+  font-weight: 300;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.btn  { 
+  background: #FF5D8F;
+  border: 1px solid #191919;
+  width: 189px;
+  height: 43px;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  color:#ffff
+}
+.btn:hover, .connectBtn:hover { 
+  background-color: #ffff;
+  color: #191919;
+  transition: all 300ms ease-in-out;
+
+}
+.box { 
+  border: 1px solid #191919;
+  width: 237px;
+height: 234px;
+  margin: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.boxColor { 
+  background-color: #FF97B7;
+}
+.boxHeader { 
+  display: flex; 
+  gap: 50px;
+  flex-direction: column;
+ 
+}
+.innerDiv { 
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: row;
+}
