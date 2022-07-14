@@ -10,7 +10,7 @@ export default function Header({tokenIds,mint, maxTokenIds, loading, userTokenId
           let userTokenNumber = parseFloat(userTokenId)
           seUserNumber(userTokenNumber)
         setTokenIdNumber(tokenIdNumber)
-        console.log(`${userTokenId} this isthe case ${tokenNumber}`)
+        console.log(`User :${userTokenId}, Token: ${tokenNumber}`)
   
     })
     

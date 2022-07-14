@@ -32,6 +32,7 @@ export default function Home() {
     connect();
     returnMaxTokens();
     returnTokensMinted();
+    returnUserTokenBalance();
 
     
   });
@@ -121,6 +122,26 @@ const returnTokensMinted = async() => {
     console.error(e)
   }
 }
+const returnUserTokenBalance = async() => { 
+  try { 
+    // get the provider or signer 
+    const provider = await getProviderOrSigner(true);
+    const address = await provider.getAddress()
+    //intitialize the contract 
+    const contract = new Contract(
+      //CONTRAC ADDRESS
+      CONTRACT_ADDRESS,
+      //CONTRACT ABI 
+      CONTRACT_ABI,
+      provider
+    );
+    const tx = await contract.getBalanceOfTokens(address)
+    setUserTokenId(tx.toString())
+
+  }catch(e)  { 
+    console.error(e)
+  }
+}
 const returnMaxTokens = async() => { 
   try { 
     // get the provider or signer 
@@ -140,6 +161,7 @@ const returnMaxTokens = async() => {
     console.error(e)
   }
 }
+
 
 
 
