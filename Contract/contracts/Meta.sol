@@ -1,11 +1,11 @@
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0; 
 
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 // import "@openzeppelin/contracts/access/Ownable.sol";
 
 
-error maxMintIds();
+
 error noMoreTokenIds(); 
 error insufficientFunds();
 error contract_Owner();
@@ -13,7 +13,7 @@ error contract_Owner();
 contract meta is ERC1155 { 
     //1 assigned ID for this contract
     uint256 public constant metaOrcs = 0;
-    uint256 private immutable maxTokenIds = 10000;
+    uint256 private immutable i_maxTokenIds = 10000;
     uint private immutable i_price = 0.01 ether;
     address private immutable i_owner;
     //keep track of tokenIds using a counter 
@@ -25,7 +25,7 @@ contract meta is ERC1155 {
 
      modifier  onlyOwner { 
          //For only ownes of contract can withdraw funds
-        if(msg.sender != msg.sender) { 
+        if(i_owner != msg.sender) { 
             revert contract_Owner();
         }
         _;
@@ -37,17 +37,9 @@ contract meta is ERC1155 {
     }
 
     function mint() payable public {
-        if(balanceOf(msg.sender,0) >= 1) { 
-            revert noMoreTokenIds();
-        }
-
-        if(tokenIds >= maxTokenIds) { 
-            revert noMoreTokenIds();
-        }
-
-        if(msg.value <= i_price) { 
-            revert insufficientFunds();
-        }
+        require(balanceOf(msg.sender, 0) <= 1, "You can't mint no more");
+        require(tokenIds <= i_maxTokenIds, "There are none available for mint");
+        require(msg.value >= i_price, "Send more money man");
 
         _mint(msg.sender, 0, 1, ""); 
         tokenIds ++;
@@ -66,9 +58,9 @@ contract meta is ERC1155 {
     }
 
     //get balance of TOKEN
-    function getBalanceOfTokens() public view returns(uint256) { 
+    function getBalanceOfTokens(address _sender) public view returns(uint256) { 
 
-        return balanceOf(msg.sender, 0);
+        return balanceOf(_sender, 0);
     }
     //get balance of contract 
     function getBalance() public view returns (uint256) { 
@@ -84,7 +76,7 @@ contract meta is ERC1155 {
     }
 
     function maxTokenIDS() public pure returns(uint256) { 
-        return maxTokenIds;
+        return i_maxTokenIds;
     }
 
 

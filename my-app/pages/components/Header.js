@@ -2,7 +2,7 @@
 import React, {useState,useEffect} from 'react';
 import styles from '../../styles/Home.module.css'
 import Link from 'next/link';
-export default function Header({tokenIds,mint, maxTokenIds, loading, userTokenId}) {
+export default function Header({tokenIds,mint, maxTokenIds, loading, userTokenId }) {
     const  [tokenNumber, setTokenIdNumber] = useState(0)
     const [userNumber, seUserNumber] = useState(0)
     useEffect(() => {
@@ -10,8 +10,10 @@ export default function Header({tokenIds,mint, maxTokenIds, loading, userTokenId
           let userTokenNumber = parseFloat(userTokenId)
           seUserNumber(userTokenNumber)
         setTokenIdNumber(tokenIdNumber)
-
+        console.log(`${userTokenId} this isthe case ${tokenNumber}`)
+  
     })
+    
 
     const returnLoading = () => { 
         if(loading) { 

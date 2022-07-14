@@ -9,7 +9,7 @@ import Header from './components/Header'
 //web3 imports 
 import {providers, Contract, utils} from 'ethers';
 import Web3modal from 'web3modal';
-import {CONTRACT_ADDRESS, ADDRESS_ABI} from '../constants/index.js'
+import {CONTRACT_ADDRESS, CONTRACT_ABI} from '../constants/index.js'
 
 export default function Home() {
   const web3modalref = useRef(); 
@@ -17,20 +17,21 @@ export default function Home() {
   const [loading, setLoading] = useState(false); 
   const [accountAddress, setAccountAddress] = useState(""); 
 
-  const [userTokenId, setUserTokenId] = useState(""); //may use number(covert from string to number)
+  const [userTokenId, setUserTokenId] = useState(0); //may use number(covert from string to number)
   const [maxTokenIds, setMaxTokenIds] = useState("")
   const [tokenIds, setTokenIds] = useState("")
   console.log(tokenIds, maxTokenIds)
 
   useEffect(() => { 
     web3modalref.current = new Web3modal({ 
-      network: "rinkeby", 
+      network: "mumbai", 
       providerOptions: {},
       disableInjectedProvider: false
     })
-
+   
+    connect();
     returnMaxTokens();
-    
+    returnTokensMinted();
 
     
   });
@@ -86,7 +87,7 @@ function splitString(string) {
         const signer = await getProviderOrSigner(true); 
         const contract = new Contract(
             CONTRACT_ADDRESS,
-            ADDRESS_ABI,
+           CONTRACT_ABI,
             signer
         )
         const tx = await contract.mint({value: utils.parseEther("0.02")})
@@ -101,41 +102,43 @@ function splitString(string) {
     }
 }
 
-const returnSenderTokens= async() => { 
-    try { 
-        const provider = await getProviderOrSigner();
-        const contract = new Contract(
-            CONTRACT_ADDRESS,
-            ADDRESS_ABI,
-            provider
-        );
-            let tx = await contract.getBalanceOfTokens();
-            setUserTokenId(tx);
+const returnTokensMinted = async() => { 
+  try { 
+    // get the provider or signer 
+    const provider = await getProviderOrSigner();
+    //intitialize the contract 
+    const contract = new Contract(
+      //CONTRAC ADDRESS
+      CONTRACT_ADDRESS,
+      //CONTRACT ABI 
+     CONTRACT_ABI,
+      provider
+    );
+    const tx = await contract.getTokenIDS()
+    setTokenIds(tx.toString())
 
-    }catch(e) { 
-        console.error(e)
-    }
+  }catch(e)  { 
+    console.error(e)
+  }
 }
-const returnMaxTokens= async() => { 
-    try { 
-        const provider = await getProviderOrSigner();
-        const contract = new Contract(
-            CONTRACT_ADDRESS,
-            ADDRESS_ABI,
-            provider
-        );
-            let tx = await contract.maxTokenIDS();
-            let stringTx = tx.toString();
-            setMaxTokenIds(stringTx);
-            
-            let token = await contract.getTokenID(); 
-            let tokenString = token.toString();
-            setTokenIds(tokenString);
+const returnMaxTokens = async() => { 
+  try { 
+    // get the provider or signer 
+    const provider = await getProviderOrSigner();
+    //intitialize the contract 
+    const contract = new Contract(
+      //CONTRAC ADDRESS
+      CONTRACT_ADDRESS,
+      //CONTRACT ABI 
+      CONTRACT_ABI,
+      provider
+    );
+    const tx = await contract.getaMxTokenIDS()
+    setMaxTokenIds(tx.toString())
 
-
-    }catch(e) { 
-        console.error(e)
-    }
+  }catch(e)  { 
+    console.error(e)
+  }
 }
 
 
@@ -147,7 +150,7 @@ const returnMaxTokens= async() => {
     <div className={styles.container}>
       <Nav
       isConnected = {isConnected}
-        connect = {connect}x
+        connect = {connect}
         accountAddress = {accountAddress}
       />
       <Header
