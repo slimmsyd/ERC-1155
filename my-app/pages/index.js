@@ -96,8 +96,8 @@ function splitString(string) {
         setLoading(false); 
 
 
-
     }catch(e) { 
+      window.alert("Must not have enough money");
         console.error(e)
     }
 }
