@@ -58,8 +58,8 @@ export default function Header({tokenIds,mint, maxTokenIds, loading, userTokenId
                 <h1>The</h1>
                 <h1> METAVERSE</h1>
                 {returnLoading()}
-                <p>{tokenIds}/{maxTokenIds} available</p>
-            </div>
+                <p>{tokenIds} /5 available</p>
+            </div> 
             <div className = {styles.boxHeader}>
                {openSection()}
    

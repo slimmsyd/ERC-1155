@@ -10,6 +10,7 @@ error noMoreTokenIds();
 error insufficientFunds();
 error contract_Owner();
 
+
 contract meta is ERC1155 { 
     //1 assigned ID for this contract
     uint256 public constant metaOrcs = 0;
@@ -21,8 +22,7 @@ contract meta is ERC1155 {
     
     string private constant baseURI = "ipfs://QmYGB11R42eg49Mgts9THPmYqu4qCSarhZKjDirAnYnMS8/metadata.json";
 
-
-
+7
      modifier  onlyOwner { 
          //For only ownes of contract can withdraw funds
         if(i_owner != msg.sender) { 

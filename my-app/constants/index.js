@@ -1,10 +1,25 @@
-export const CONTRACT_ADDRESS = '0x8EfbaD14d66e25823E4961A4145111982e4e3098'
+export const CONTRACT_ADDRESS = '0x33B2d83864c1dc568a3f6Cd03A48Eb07193054f2'
 
 export const CONTRACT_ABI =    [
   {
     "inputs": [],
     "stateMutability": "nonpayable",
     "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "contract_Owner",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "insufficientFunds",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "noMoreTokenIds",
+    "type": "error"
   },
   {
     "anonymous": false,
@@ -129,6 +144,19 @@ export const CONTRACT_ABI =    [
     "type": "fallback"
   },
   {
+    "inputs": [],
+    "name": "_baseURI",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -178,20 +206,7 @@ export const CONTRACT_ABI =    [
   },
   {
     "inputs": [],
-    "name": "frogs",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getBalanceOfContract",
+    "name": "getBalance",
     "outputs": [
       {
         "internalType": "uint256",
@@ -216,13 +231,7 @@ export const CONTRACT_ABI =    [
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_account",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "name": "getBalanceOfTokens",
     "outputs": [
       {
@@ -236,7 +245,7 @@ export const CONTRACT_ABI =    [
   },
   {
     "inputs": [],
-    "name": "getTokenIDS",
+    "name": "getTokenID",
     "outputs": [
       {
         "internalType": "uint256",
@@ -245,19 +254,6 @@ export const CONTRACT_ABI =    [
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getaMxTokenIDS",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "pure",
     "type": "function"
   },
   {
@@ -279,6 +275,32 @@ export const CONTRACT_ABI =    [
         "internalType": "bool",
         "name": "",
         "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "maxTokenIDS",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "metaOrcs",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -396,7 +418,7 @@ export const CONTRACT_ABI =    [
   },
   {
     "inputs": [],
-    "name": "tokenIDS",
+    "name": "tokenIds",
     "outputs": [
       {
         "internalType": "uint256",

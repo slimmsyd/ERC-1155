@@ -30,9 +30,8 @@ export default function Home() {
     })
    
     connect();
-    returnMaxTokens();
     returnTokensMinted();
-    returnUserTokenBalance();
+  
 
     
   });
@@ -106,17 +105,17 @@ function splitString(string) {
 const returnTokensMinted = async() => { 
   try { 
     // get the provider or signer 
-    const provider = await getProviderOrSigner();
+    const provider = await getProviderOrSigner(true);
     //intitialize the contract 
     const contract = new Contract(
       //CONTRAC ADDRESS
       CONTRACT_ADDRESS,
       //CONTRACT ABI 
      CONTRACT_ABI,
-      provider
+      provider 
     );
-    const tx = await contract.getTokenIDS()
-    setTokenIds(tx.toString())
+    const token = await contract.getTokenID()
+    setTokenIds(token.toString())
 
   }catch(e)  { 
     console.error(e)
@@ -135,7 +134,7 @@ const returnUserTokenBalance = async() => {
       CONTRACT_ABI,
       provider
     );
-    const tx = await contract.getBalanceOfTokens(address)
+    const tx = await contract.getBalanceOfTokens()
     setUserTokenId(tx.toString())
 
   }catch(e)  { 
@@ -154,8 +153,8 @@ const returnMaxTokens = async() => {
       CONTRACT_ABI,
       provider
     );
-    const tx = await contract.getaMxTokenIDS()
-    setMaxTokenIds(tx.toString())
+    const maxTokens = await contract.maxTokenIDS()
+    setMaxTokenIds(maxTokens.toString())
 
   }catch(e)  { 
     console.error(e)
