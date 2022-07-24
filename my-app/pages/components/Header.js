@@ -10,7 +10,7 @@ export default function Header({tokenIds,mint, maxTokenIds, loading, userTokenId
           let userTokenNumber = parseFloat(userTokenId)
           seUserNumber(userTokenNumber)
         setTokenIdNumber(tokenIdNumber)
-        console.log(`User :${userTokenId}, Token: ${tokenNumber}`)
+        // console.log(`User :${userTokenId}, Token: ${tokenNumber}`)
   
     })
     
@@ -58,7 +58,7 @@ export default function Header({tokenIds,mint, maxTokenIds, loading, userTokenId
                 <h1>The</h1>
                 <h1> METAVERSE</h1>
                 {returnLoading()}
-                <p>{tokenIds} /5 available</p>
+                <p>{tokenIds} /{maxTokenIds} available</p>
             </div> 
             <div className = {styles.boxHeader}>
                {openSection()}

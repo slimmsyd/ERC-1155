@@ -30,9 +30,9 @@ export default function Home() {
     })
    
     connect();
-    returnTokensMinted();
   
-
+    returnMaxTokens();
+    returnTokensMinted();
     
   });
 
@@ -155,6 +155,7 @@ const returnMaxTokens = async() => {
     );
     const maxTokens = await contract.maxTokenIDS()
     setMaxTokenIds(maxTokens.toString())
+    console.log(maxTokenIds.toString())
 
   }catch(e)  { 
     console.error(e)

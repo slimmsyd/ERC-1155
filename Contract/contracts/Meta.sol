@@ -22,7 +22,7 @@ contract meta is ERC1155 {
     
     string private constant baseURI = "ipfs://QmYGB11R42eg49Mgts9THPmYqu4qCSarhZKjDirAnYnMS8/metadata.json";
 
-7
+
      modifier  onlyOwner { 
          //For only ownes of contract can withdraw funds
         if(i_owner != msg.sender) { 

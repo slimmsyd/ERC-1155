@@ -1,6 +1,6 @@
-export const CONTRACT_ADDRESS = '0x33B2d83864c1dc568a3f6Cd03A48Eb07193054f2'
+export const CONTRACT_ADDRESS = '0xd85fD9Bb48B7eb05809Ee2fCbD7fe8Edf6298b0A'
 
-export const CONTRACT_ABI =    [
+export const CONTRACT_ABI =   [
   {
     "inputs": [],
     "stateMutability": "nonpayable",
@@ -9,16 +9,6 @@ export const CONTRACT_ABI =    [
   {
     "inputs": [],
     "name": "contract_Owner",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "insufficientFunds",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "noMoreTokenIds",
     "type": "error"
   },
   {
@@ -231,7 +221,13 @@ export const CONTRACT_ABI =    [
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_sender",
+        "type": "address"
+      }
+    ],
     "name": "getBalanceOfTokens",
     "outputs": [
       {
